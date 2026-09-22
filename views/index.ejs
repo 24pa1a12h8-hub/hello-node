@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Todo-list</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            margin-top: 25px;
+        }
+
+        .todo {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Todo-list</h1>
+
+    <h2>Overdue (<%= overdue.length %>)</h2>
+    <%- include("todos", { todos: overdue, today: today }) %>
+
+    <h2>Due Today (<%= dueToday.length %>)</h2>
+    <%- include("todos", { todos: dueToday, today: today }) %>
+
+    <h2>Due Later (<%= dueLater.length %>)</h2>
+    <%- include("todos", { todos: dueLater, today: today }) %>
+
+</body>
+</html>

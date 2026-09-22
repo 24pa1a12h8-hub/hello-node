@@ -1,0 +1,12 @@
+<% todos.forEach(todo => { %>
+    <div class="todo">
+        <span>
+            <%= todo.completed ? "[x]" : "[ ]" %>
+            <%= todo.title %>
+        </span>
+
+        <% if (todo.dueDate !== today) { %>
+            <span><%= todo.dueDate %></span>
+        <% } %>
+    </div>
+<% }) %>
