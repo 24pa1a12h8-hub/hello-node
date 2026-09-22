@@ -1,43 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Todo-list</title>
+    <title>To-Do Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 700px;
-            margin: 40px auto;
-        }
-
-        h1 {
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            margin-top: 25px;
-        }
-
-        .todo {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-white">
 
-    <h1>My Todo-list</h1>
+    <div class="grid grid-cols-6">
 
-    <h2>Overdue (<%= overdue.length %>)</h2>
-    <%- include("todos", { todos: overdue, today: today }) %>
+        <div class="col-start-3 col-span-2">
 
-    <h2>Due Today (<%= dueToday.length %>)</h2>
-    <%- include("todos", { todos: dueToday, today: today }) %>
+            <h1 class="text-2xl font-semibold text-gray-600 mt-8">
+                My Todo-list
+            </h1>
 
-    <h2>Due Later (<%= dueLater.length %>)</h2>
-    <%- include("todos", { todos: dueLater, today: today }) %>
+            <form>
+                <div class="flex gap-2 py-4">
+
+                    <div class="flex-auto w-64">
+                        <input
+                            type="text"
+                            class="border border-gray-300 text-gray-900 text-sm rounded w-full p-2"
+                            placeholder="What's next?"
+                            autofocus
+                            required
+                        >
+                    </div>
+
+                    <div class="flex-auto w-32">
+                        <input
+                            type="date"
+                            class="border border-gray-300 text-gray-900 text-sm rounded w-full p-2"
+                        >
+                    </div>
+
+                    <div class="flex-none">
+                        <button
+                            type="submit"
+                            class="text-white bg-green-600 hover:bg-green-700 font-medium rounded text-sm px-5 py-2"
+                        >
+                            Add
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
+            <div class="mt-2">
+
+                <h2 class="text-lg text-gray-700 mt-4">
+                    Overdue (<%= overdue.length %>)
+                </h2>
+
+                <%- include("todos", { todos: overdue, today: today }) %>
+
+
+                <h2 class="text-lg text-gray-700 mt-4">
+                    Due Today (<%= dueToday.length %>)
+                </h2>
+
+                <%- include("todos", { todos: dueToday, today: today }) %>
+
+
+                <h2 class="text-lg text-gray-700 mt-4">
+                    Due Later (<%= dueLater.length %>)
+                </h2>
+
+                <%- include("todos", { todos: dueLater, today: today }) %>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
 </html>

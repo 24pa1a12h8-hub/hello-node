@@ -1,12 +1,31 @@
-<% todos.forEach(todo => { %>
-    <div class="todo">
-        <span>
-            <%= todo.completed ? "[x]" : "[ ]" %>
-            <%= todo.title %>
-        </span>
+<ul>
+    <% todos.forEach(todo => { %>
 
-        <% if (todo.dueDate !== today) { %>
-            <span><%= todo.dueDate %></span>
-        <% } %>
-    </div>
-<% }) %>
+        <li>
+            <div class="flex items-center w-fit my-2 px-2 py-1 rounded hover:bg-purple-50">
+
+                <input
+                    id="todo-checkbox-<%= todo.id %>"
+                    type="checkbox"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300"
+                    <%= todo.completed ? "checked" : "" %>
+                >
+
+                <label
+                    for="todo-checkbox-<%= todo.id %>"
+                    class="ml-2 text-sm text-gray-600 cursor-pointer"
+                >
+                    <%= todo.title %>
+                </label>
+
+                <% if (todo.dueDate && todo.dueDate < today && !todo.completed) { %>
+                    <span class="ml-2 text-xs text-red-500">
+                        Overdue
+                    </span>
+                <% } %>
+
+            </div>
+        </li>
+
+    <% }) %>
+</ul>
